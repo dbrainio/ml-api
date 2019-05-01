@@ -169,7 +169,7 @@ def cast_middleware(model):
             if request.method != 'POST':
                 return await handler(model)
             kwargs = await post_to_kwargs(request) or dict()
-            result = await handler(model, request, **kwargs)
+            result = await handler(model, request=request, **kwargs)
             return result_to_response(result)
         except web.HTTPException:
             raise

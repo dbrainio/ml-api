@@ -6,7 +6,7 @@ from ml2api import routes, run
 
 class DSModel:
     @routes.post('/predict')
-    async def predict(self, request, **kw):
+    async def predict(self, request=None, **kw):
         # some logic
         return result
 
