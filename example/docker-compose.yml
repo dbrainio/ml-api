@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  queue:
+    image: rabbitmq:3.7-management-alpine
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=3WzUFfk71jdJxjMjhNsT
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=j8XfG9ZDT5ZZrWTzw62q
+    ports:
+      - 15672:15672
+
+  square-service:
+    build: ..
+    command: python service/square.py
+    depends_on:
+      - queue
+
+  recognize-service:
+    build: ..
+    command: python service/recognize.py
+    depends_on:
+      - queue
+
+  recognize-passport-service:
+    build: ..
+    command: python service/recognize_passport.py
+    depends_on:
+      - queue
+
+  web:
+    build: ..
+    command: uvicorn web:app --host 0.0.0.0
+    ports:
+      - 8000:8000
+    depends_on:
+      - square-service
+      - recognize-service
+      - recognize-passport-service
