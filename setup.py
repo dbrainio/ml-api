@@ -10,6 +10,6 @@ setup(
         'aiohttp==3.5.4',
         'imageio==2.5.0',
         'numpy==1.16.3',
-        'PyYAML==5.1',
+        'PyYAML==5.4',
     ]
 )
