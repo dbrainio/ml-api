@@ -9,7 +9,7 @@ setup(
     install_requires=[
         'aiohttp==3.5.4',
         'imageio==2.5.0',
-        'numpy==1.16.3',
+        'numpy==1.22.0',
         'PyYAML==5.1',
     ]
 )
